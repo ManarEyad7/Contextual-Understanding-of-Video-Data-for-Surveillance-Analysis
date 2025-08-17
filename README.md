@@ -1,3 +1,5 @@
+
+
 # KAUST Surveillance Analysis Project
 
 This repository contains code for motion-based segmentation and video analysis using various models, including RAFT, for surveillance analysis. The goal of this project is to process and segment videos for motion analysis.
@@ -40,11 +42,16 @@ Once the environment is activated, install the required dependencies. If you hav
 pip install -r requirements.txt
 ```
 
-Pretrained models can be downloaded by running
+### 4. Download Pretrained Models
 
+Navigate to the RAFT directory and download the pretrained models:
+
+```bash
+cd RAFT
 ./RAFT/models.zip
+```
 
-### 4. Running the Code
+### 5. Running the Code
 
 To run the motion-based segmentation script, use the following command:
 
@@ -62,3 +69,4 @@ python LoVR/motion_based_clip_segmentation.py \
   --min_seg_len 24 \
   --export_clips
 ```
+
