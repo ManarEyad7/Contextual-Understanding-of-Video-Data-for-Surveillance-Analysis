@@ -1,4 +1,6 @@
+To guide users on how to install `ffmpeg` using Conda in your README file, you'll want to provide clear instructions along with a brief explanation of the steps to set up the environment properly. Here's a simple and well-structured example of how to include the `ffmpeg` installation step in your README:
 
+---
 
 # KAUST Surveillance Analysis Project
 
@@ -15,34 +17,34 @@ git clone git@github.com:ManarEyad7/kaust-surv-analysis.git
 cd kaust-surv-analysis
 ```
 
-### 2. Create a Virtual Environment
+### 2. Create a Conda Virtual Environment
 
-It's recommended to use a virtual environment to manage dependencies. You can create a virtual environment using **Conda** or **virtualenv**.
-
-#### Using Conda:
+It's recommended to use a Conda virtual environment to manage dependencies. You can create and activate the environment using the following commands:
 
 ```bash
 conda create --name kaust-surv python=3.10
 conda activate kaust-surv
 ```
 
-#### Using `virtualenv`:
+### 3. Install Python Dependencies
 
-```bash
-python3 -m venv kaust-surv
-source kaust-surv/bin/activate  # On Linux/macOS
-kaust-surv\Scripts\activate  # On Windows
-```
-
-### 3. Install Dependencies
-
-Once the environment is activated, install the required dependencies. If you have a `requirements.txt` file, use the following command:
+Once the environment is activated, install the required Python dependencies from the `requirements.txt` file by running:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Download Pretrained Models
+### 4. Install ffmpeg
+
+This project requires `ffmpeg` for video processing. You can install `ffmpeg` in your Conda environment by running:
+
+```bash
+conda install -c conda-forge ffmpeg
+```
+
+This will install the necessary dependencies for video processing.
+
+### 5. Download Pretrained Models
 
 Navigate to the RAFT directory and download the pretrained models:
 
@@ -51,7 +53,7 @@ cd RAFT
 ./RAFT/models.zip
 ```
 
-### 5. Running the Code
+### 6. Running the Code
 
 To run the motion-based segmentation script, use the following command:
 
@@ -70,3 +72,14 @@ python LoVR/motion_based_clip_segmentation.py \
   --export_clips
 ```
 
+---
+
+### Additional Notes
+
+* **Installing Dependencies**: It's crucial to install `ffmpeg` using Conda as part of setting up the environment.
+* **Video Files**: Replace `/path/to/your/video.mp4` with the actual path to your video file.
+* **Output Directory**: Set the output directory path to where you want the segmentation results to be saved.
+
+---
+
+This README structure ensures users understand the steps to set up the environment, install `ffmpeg`, and run the code smoothly. Let me know if you need more details!
