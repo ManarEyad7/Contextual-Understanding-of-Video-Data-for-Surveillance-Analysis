@@ -40,6 +40,10 @@ Once the environment is activated, install the required dependencies. If you hav
 pip install -r requirements.txt
 ```
 
+Pretrained models can be downloaded by running
+
+./RAFT/models.zip
+
 ### 4. Running the Code
 
 To run the motion-based segmentation script, use the following command:
