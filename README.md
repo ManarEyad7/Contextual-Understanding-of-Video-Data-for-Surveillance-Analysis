@@ -1,6 +1,4 @@
-To guide users on how to install `ffmpeg` using Conda in your README file, you'll want to provide clear instructions along with a brief explanation of the steps to set up the environment properly. Here's a simple and well-structured example of how to include the `ffmpeg` installation step in your README:
 
----
 
 # KAUST Surveillance Analysis Project
 
