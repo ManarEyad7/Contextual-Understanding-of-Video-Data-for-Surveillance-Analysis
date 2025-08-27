@@ -56,7 +56,7 @@ Cuts a long video into motion-dense clips (RAFT).
 **Example**
 
 ```bash
-python LoVR/motion_based_clip_segmentation.py \
+python LoVR/motion_based_clip_segmentation_adaptive.py \
   --model RAFT/models/raft-things.pth \
   --video /path/to/your/video.mp4 \
   --out_dir /path/to/output/dir \
@@ -81,7 +81,7 @@ Generates captions for clips from step 1.
 
 ```bash
 # Replace <> with your actual paths
-python LoVR/new_caption_generator.py \
+python LoVR/caption_generator.py \
   --model-path Qwen/Qwen2-VL-7B-Instruct \
   --video-folder </path/to/clips> \
   --jsonl-file </path/to/index.jsonl> \
@@ -104,9 +104,7 @@ Merges per-chunk caption JSONLs into one final file.
 **Example**
 
 ```bash
-export BASE=/path/to/workdir
-
-python caption_merger.py \
+python LoVR/caption_merger.py \
   --cap-file ${BASE}/results/captions_merged.jsonl \
   --result-file "${BASE}/results/captions_chunk_*.jsonl" \
   --num-workers 8
