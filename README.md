@@ -115,11 +115,10 @@ python caption_merger.py \
 ---
 ## References
 
-\[1] Q. Cai et al., “LoVR: A Benchmark for Long Video Retrieval in Multimodal Contexts,” *arXiv:2505.13928*, 2025.
-\[2] Y. Wu et al., “Towards Surveillance Video-and-Language Understanding: New Dataset, Baselines, and Challenges,” *arXiv:2309.13925*, 2023.
-\[3] Z. Teed and J. Deng, “RAFT: Recurrent All-Pairs Field Transforms for Optical Flow,” *arXiv:2003.12039*, 2020. 
+[1] Q. Cai et al., “LoVR: A Benchmark for Long Video Retrieval in Multimodal Contexts,” *arXiv:2505.13928*, 2025.  
+[2] Y. Wu et al., “Towards Surveillance Video-and-Language Understanding: New Dataset, Baselines, and Challenges,” *arXiv:2309.13925*, 2023.  
+[3] Z. Teed and J. Deng, “RAFT: Recurrent All-Pairs Field Transforms for Optical Flow,” *arXiv:2003.12039*, 2020.
 
----
 ### Notes
 
 * Replace sample paths with your actual data locations.
