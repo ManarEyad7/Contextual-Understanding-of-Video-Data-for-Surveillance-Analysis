@@ -1,4 +1,4 @@
-[![Huggingface Space](https://img.shields.io/badge/Demo%20-yellow.svg)](https://drive.google.com/file/d/1L9WlzMrlGvpDRZr2O9cdiriUJar248EA/view)
+[![Huggingface Space](https://img.shields.io/badge/Demo%20-yellow.svg)](https://drive.google.com/)
 
 <div align="center">
     <img src="static/images/Banner1.png" alt="Banner" />
