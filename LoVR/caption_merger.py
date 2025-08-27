@@ -15,7 +15,7 @@ load_dotenv()
  
 API_URL = "https://api.openai.com/v1/chat/completions" # Replace with your actual API URL
 API_KEY = os.getenv("API_KEY")  # Loaded from .env
-BASE_PATH = "/home/alime/LoVR-benchmark-main" 
+BASE_PATH = " " 
 PROGRESS_LOG = "logs/caption_merger_progress.log" 
 
 def log_progress(message):

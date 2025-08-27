@@ -8,3 +8,12 @@ build
 correlation.egg-info
 dcgm/
 
+RAFT/demo-video/
+*.avi
+*.mp4
+mbts_out/
+results/
+__pycache__/
+*.pt
+*.pth
+*.ckpt
