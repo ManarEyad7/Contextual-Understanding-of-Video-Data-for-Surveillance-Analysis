@@ -32,12 +32,15 @@ pip install -r requirements.txt
 conda install -c conda-forge ffmpeg -y
 ```
 
-### 5) RAFT weights
+### 5) RAFT Weights
 
-Place the RAFT checkpoint at `RAFT/models/raft-things.pth`
-*(Download the official RAFT weights and keep the path exactly as above.)*
+Download the pretrained RAFT models and place them under RAFT/models:
 
----
+```bash
+
+cd RAFT
+unzip models.zip -d models
+```
 
 ## Running the Pipeline
 
