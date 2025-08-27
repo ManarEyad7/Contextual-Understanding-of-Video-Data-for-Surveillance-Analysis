@@ -1,3 +1,10 @@
+[![Huggingface Space](https://img.shields.io/badge/Demo%20-yellow.svg)](https://drive.google.com/file/d/1L9WlzMrlGvpDRZr2O9cdiriUJar248EA/view)
+
+<div align="center">
+    <img src="static/images/Banner1.png" alt="Banner" />
+  <img src="static/images/RedyaLogo.png" alt="Redya Logo" width="200"/>
+
+</div>
 
 
 # Contextual Understanding of Video Data for Surveillance Analysis 
