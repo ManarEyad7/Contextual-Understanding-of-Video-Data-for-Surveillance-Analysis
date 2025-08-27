@@ -6,8 +6,6 @@
 </div>
 
 
-# Contextual Understanding of Video Data for Surveillance Analysis 
-
 
 ## Setup
 
