@@ -1,4 +1,3 @@
-[![Huggingface Space](https://img.shields.io/badge/Demo%20-yellow.svg)](https:///)
 
 <div align="center">
     <img src="/images/Banner.png" alt="Banner" />
