@@ -50,14 +50,6 @@ unzip models.zip -d models
 
 Cuts a long video into motion-dense clips (RAFT).
 
-**Key flags:**
-`--model` RAFT weights • `--video` input video • `--out_dir` outputs •
-`--iters` flow iters • `--max_side` resize • `--savgol_window/savgol_poly` smoothing •
-`--thr z|quantile` with `--k_hi/--k_lo` or `--q_hi/--q_lo` •
-`--min_on/--min_off/--max_hole` durations (frames) •
-`--seg_k/--seg_q --min_active_ratio` quality filter •
-`--merge_gap_sec` merge nearby segments (sec) • `--export_clips` save MP4s
-
 **Example**
 
 ```bash
@@ -82,28 +74,19 @@ python LoVR/motion_based_clip_segmentation.py \
 
 Generates captions for clips from step 1.
 
-**Key flags:**
-`--model-path` model weights • `--video-folder` clips dir • `--jsonl-file` clip index •
-`--result-file` output JSONL • `--batch-size` • `--num-chunks` • `--chunk-idx` (0-based)
-
 **Example (chunked)**
 
 ```bash
-export CKPT=/path/to/model_weights
-export BASE=/path/to/workdir
-CHUNKS=8
-IDX=0
-LOG_FILE=${BASE}/logs/output_${IDX}.log
-
-python caption_generator.py \
-  --model-path ${CKPT} \
-  --video-folder ${BASE}/clips \
-  --jsonl-file ${BASE}/index.jsonl \
-  --result-file ${BASE}/results/captions_chunk_${IDX}.jsonl \
-  --batch-size 16 \
-  --num-chunks ${CHUNKS} \
-  --chunk-idx ${IDX} \
-  > "$LOG_FILE" 2>&1 &
+# Replace <> with your actual paths
+python LoVR/new_caption_generator.py \
+  --model-path Qwen/Qwen2-VL-7B-Instruct \
+  --video-folder </path/to/clips> \
+  --jsonl-file </path/to/index.jsonl> \
+  --result-file </path/to/output/captions.jsonl> \
+  --num-chunks 1 \
+  --chunk-idx 0 \
+  --batch-size 4 \
+  --debug
 ```
 
 ---
