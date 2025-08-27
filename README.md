@@ -49,7 +49,7 @@ unzip models.zip -d models
 
 **Run in order:** 1) Segmentation → 2) Captioning → 3) Merge
 
-### 1) Video Segmentation (`motion_based_clip_segmentation.py`)
+### 1) Video Segmentation (`motion_based_clip_segmentation_adaptive.py`)
 
 Cuts a long video into motion-dense clips (RAFT).
 
