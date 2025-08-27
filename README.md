@@ -11,15 +11,15 @@
 ### 1) Clone
 
 ```bash
-git clone git@github.com:ManarEyad7/kaust-surv-analysis.git
-cd kaust-surv-analysis
+git clone git@github.com:ManarEyad7/VidConSurv.git
+cd VidConSurv
 ```
 
 ### 2) Conda env
 
 ```bash
-conda create --name kaust-surv python=3.10 -y
-conda activate kaust-surv
+conda create --name VidConSurv python=3.10 -y
+conda activate VidConSurv
 ```
 
 ### 3) Python deps
