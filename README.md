@@ -2,82 +2,130 @@
 
 # KAUST Surveillance Analysis Project
 
-This repository contains code for motion-based segmentation and video analysis using various models, including RAFT, for surveillance analysis. The goal of this project is to process and segment videos for motion analysis.
+Tools for motion-based segmentation and captioning of surveillance videos (RAFT-based flow + action-focused captions).
 
-## Steps to Clone and Set Up
+## Setup
 
-### 1. Clone the Repository
-
-To get started with the project, clone the repository using the following command:
+### 1) Clone
 
 ```bash
 git clone git@github.com:ManarEyad7/kaust-surv-analysis.git
 cd kaust-surv-analysis
 ```
 
-### 2. Create a Conda Virtual Environment
-
-It's recommended to use a Conda virtual environment to manage dependencies. You can create and activate the environment using the following commands:
+### 2) Conda env
 
 ```bash
-conda create --name kaust-surv python=3.10
+conda create --name kaust-surv python=3.10 -y
 conda activate kaust-surv
 ```
 
-### 3. Install Python Dependencies
-
-Once the environment is activated, install the required Python dependencies from the `requirements.txt` file by running:
+### 3) Python deps
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Install ffmpeg
-
-This project requires `ffmpeg` for video processing. You can install `ffmpeg` in your Conda environment by running:
+### 4) ffmpeg
 
 ```bash
-conda install -c conda-forge ffmpeg
+conda install -c conda-forge ffmpeg -y
 ```
 
-This will install the necessary dependencies for video processing.
+### 5) RAFT weights
 
-### 5. Download Pretrained Models
+Place the RAFT checkpoint at `RAFT/models/raft-things.pth`
+*(Download the official RAFT weights and keep the path exactly as above.)*
 
-Navigate to the RAFT directory and download the pretrained models:
+---
 
-```bash
-cd RAFT
-./RAFT/models.zip
-```
+## Running the Pipeline
 
-### 6. Running the Code
+**Run in order:** 1) Segmentation → 2) Captioning → 3) Merge
 
-To run the motion-based segmentation script, use the following command:
+### 1) Video Segmentation (`motion_based_clip_segmentation.py`)
+
+Cuts a long video into motion-dense clips (RAFT + hysteresis).
+
+**Key flags:**
+`--model` RAFT weights • `--video` input video • `--out_dir` outputs •
+`--iters` flow iters • `--max_side` resize • `--savgol_window/savgol_poly` smoothing •
+`--thr z|quantile` with `--k_hi/--k_lo` or `--q_hi/--q_lo` •
+`--min_on/--min_off/--max_hole` durations (frames) •
+`--seg_k/--seg_q --min_active_ratio` quality filter •
+`--merge_gap_sec` merge nearby segments (sec) • `--export_clips` save MP4s
+
+**Example**
 
 ```bash
 python LoVR/motion_based_clip_segmentation.py \
-  --model models/raft-things.pth \
+  --model RAFT/models/raft-things.pth \
   --video /path/to/your/video.mp4 \
   --out_dir /path/to/output/dir \
-  --iters 8 \
-  --max_side 512 \
-  --savgol_window 31 \
-  --savgol_poly 3 \
-  --z_k 2.0 \
-  --min_gap 12 \
-  --min_seg_len 24 \
+  --iters 12 \
+  --max_side 640 \
+  --savgol_window 31 --savgol_poly 3 \
+  --thr z --k_hi 2.0 --k_lo 1.0 \
+  --min_on 24 --min_off 24 --max_hole 6 \
+  --seg_k 1.0 --min_active_ratio 0.20 \
+  --merge_gap_sec 4.0 \
   --export_clips
+# (Optional if FPS metadata is wrong) add: --force_fps --fps 24
 ```
 
 ---
 
-### Additional Notes
+### 2) Caption Generation (`caption_generator.py`)
 
-* **Installing Dependencies**: It's crucial to install `ffmpeg` using Conda as part of setting up the environment.
-* **Video Files**: Replace `/path/to/your/video.mp4` with the actual path to your video file.
-* **Output Directory**: Set the output directory path to where you want the segmentation results to be saved.
+Generates captions for clips from step 1.
+
+**Key flags:**
+`--model-path` model weights • `--video-folder` clips dir • `--jsonl-file` clip index •
+`--result-file` output JSONL • `--batch-size` • `--num-chunks` • `--chunk-idx` (0-based)
+
+**Example (chunked)**
+
+```bash
+export CKPT=/path/to/model_weights
+export BASE=/path/to/workdir
+CHUNKS=8
+IDX=0
+LOG_FILE=${BASE}/logs/output_${IDX}.log
+
+python caption_generator.py \
+  --model-path ${CKPT} \
+  --video-folder ${BASE}/clips \
+  --jsonl-file ${BASE}/index.jsonl \
+  --result-file ${BASE}/results/captions_chunk_${IDX}.jsonl \
+  --batch-size 16 \
+  --num-chunks ${CHUNKS} \
+  --chunk-idx ${IDX} \
+  > "$LOG_FILE" 2>&1 &
+```
 
 ---
 
-This README structure ensures users understand the steps to set up the environment, install `ffmpeg`, and run the code smoothly. Let me know if you need more details!
+### 3) Merge Caption Results (`caption_merger.py`)
+
+Merges per-chunk caption JSONLs into one final file.
+
+**Key flags:**
+`--cap-file` final merged JSONL • `--result-file` input chunks (repeat or glob) • `--num-workers`
+
+**Example**
+
+```bash
+export BASE=/path/to/workdir
+
+python caption_merger.py \
+  --cap-file ${BASE}/results/captions_merged.jsonl \
+  --result-file "${BASE}/results/captions_chunk_*.jsonl" \
+  --num-workers 8
+```
+
+---
+
+### Notes
+
+* Replace sample paths with your actual data locations.
+* Outputs from step 1 include `motion.csv`, `segments.json`, `segments_sec.json`, `plot.png`, and optional `clips/*.mp4`.
