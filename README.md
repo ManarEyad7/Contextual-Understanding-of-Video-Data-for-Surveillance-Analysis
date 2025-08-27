@@ -117,7 +117,7 @@ python caption_merger.py \
 
 \[1] Q. Cai et al., “LoVR: A Benchmark for Long Video Retrieval in Multimodal Contexts,” *arXiv:2505.13928*, 2025.
 \[2] Y. Wu et al., “Towards Surveillance Video-and-Language Understanding: New Dataset, Baselines, and Challenges,” *arXiv:2309.13925*, 2023.
-\[3] Z. Teed and J. Deng, “RAFT: Recurrent All-Pairs Field Transforms for Optical Flow,” *arXiv:2003.12039*, 2020. [![Huggingface Space](https://img.shields.io/badge/Demo%20-yellow.svg)](https://drive.google.com/)
+\[3] Z. Teed and J. Deng, “RAFT: Recurrent All-Pairs Field Transforms for Optical Flow,” *arXiv:2003.12039*, 2020. 
 
 ---
 ### Notes
