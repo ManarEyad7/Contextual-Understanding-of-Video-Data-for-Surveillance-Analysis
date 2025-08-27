@@ -1,8 +1,7 @@
 
 
-# KAUST Surveillance Analysis Project
+# Contextual Understanding of Video Data for Surveillance Analysis 
 
-Tools for motion-based segmentation and captioning of surveillance videos (RAFT-based flow + action-focused captions).
 
 ## Setup
 
