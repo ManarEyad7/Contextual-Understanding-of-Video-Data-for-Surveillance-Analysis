@@ -48,7 +48,7 @@ unzip models.zip -d models
 
 ### 1) Video Segmentation (`motion_based_clip_segmentation.py`)
 
-Cuts a long video into motion-dense clips (RAFT + hysteresis).
+Cuts a long video into motion-dense clips (RAFT).
 
 **Key flags:**
 `--model` RAFT weights • `--video` input video • `--out_dir` outputs •
