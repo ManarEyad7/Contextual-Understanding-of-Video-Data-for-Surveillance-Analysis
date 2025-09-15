@@ -1,3 +1,4 @@
+[![Poster](https://img.shields.io/badge/Poster-View%20Image-blue)](/images/Poster.png)
 
 <div align="center">
     <img src="/images/Banner.png" alt="Banner" />
